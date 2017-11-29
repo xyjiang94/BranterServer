@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20171127054829) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "event_followers", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "event_id"
@@ -28,7 +31,7 @@ ActiveRecord::Schema.define(version: 20171127054829) do
     t.datetime "to"
     t.decimal "lat"
     t.decimal "lng"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_events_on_user_id"
@@ -36,8 +39,8 @@ ActiveRecord::Schema.define(version: 20171127054829) do
 
   create_table "posts", force: :cascade do |t|
     t.string "content"
-    t.integer "user_id"
-    t.integer "event_id"
+    t.bigint "user_id"
+    t.bigint "event_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_posts_on_event_id"
@@ -52,4 +55,7 @@ ActiveRecord::Schema.define(version: 20171127054829) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "events", "users"
+  add_foreign_key "posts", "events"
+  add_foreign_key "posts", "users"
 end
