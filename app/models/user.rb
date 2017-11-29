@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+
 	has_many :events
 
 	has_many :event_followers, foreign_key: "follower_id", dependent: :destroy
@@ -6,5 +7,10 @@ class User < ApplicationRecord
 
 	has_many :posts
 
-	validates_presence_of :name
+	before_save { self.email = email.downcase }
+
+	validates :email, presence: true, length: { maximum: 255 },
+                    uniqueness: { case_sensitive: false }
+
+	has_secure_password
 end

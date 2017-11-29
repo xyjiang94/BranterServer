@@ -13,6 +13,13 @@ class UsersController < ApplicationController
     json_response(@User, :created)
   end
 
+	def login
+		user = User.find_by(email: params[:email])
+		result = user.authenticate(params[:password])
+		response = {"success_flag" => !!result, "user" => result}
+		json_response(response)
+	end
+
   # GET /Users/:id
   def show
     json_response(@User)
@@ -34,7 +41,7 @@ class UsersController < ApplicationController
 
 	def user_params
     # whitelist params
-    params.permit(:name, :gender, :birthday)
+    params.permit(:name, :gender, :birthday, :email, :password, :password_confirmation)
   end
 
 

@@ -18,4 +18,5 @@ Rails.application.routes.draw do
 	get '/events/:event_id/followers' => 'event_followers#get_followers'
 	get 'users/:user_id/joined_event' => 'event_followers#get_joined_events'
 
+	get '/login' => 'users#login'
 end
