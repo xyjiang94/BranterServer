@@ -4,7 +4,11 @@ class EventsController < ApplicationController
 
 	# GET /users/:user_id/events
   def index
-    json_response_event_list(Event.where(user_id: @user.id))
+		if @user
+    	json_response_event_list(Event.where(user_id: @user.id))
+		else
+			json_response_event_list(Event.all)
+		end
   end
 
   # GET /users/:user_id/events/:id
