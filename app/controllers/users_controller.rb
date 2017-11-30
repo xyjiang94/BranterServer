@@ -15,9 +15,11 @@ class UsersController < ApplicationController
 
 	def login
 		user = User.find_by(email: params[:email])
+		puts user
+		puts 'fffffffffffuck'
 		result = user.authenticate(params[:password])
 		response = {"success_flag" => !!result, "user" => result}
-		json_response_user(response)
+		json_response(response)
 	end
 
   # GET /Users/:id
