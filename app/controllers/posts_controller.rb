@@ -23,7 +23,7 @@ class PostsController < ApplicationController
 	end
 
 	def get_all_by_event
-		res = Post.where4(event_id: params[:event_id])
+		res = Post.where(event_id: params[:event_id])
 		json_response(res)
 	end
 
