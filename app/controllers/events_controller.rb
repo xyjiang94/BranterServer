@@ -4,18 +4,19 @@ class EventsController < ApplicationController
 
 	# GET /users/:user_id/events
   def index
-    json_response(Event.all)
+    json_response_event(Event.all)
   end
 
   # GET /users/:user_id/events/:id
   def show
-    json_response(@event)
+    json_response_event(@event)
   end
 
   # POST /users/:user_id/events
   def create
     @user.events.create!(event_params)
-    json_response(@user, :created)
+		@event.event_followers.create!(follower_id: @user.id)
+    json_response_event(@user, :created)
   end
 
   # PUT /users/:user_id/events/:id
@@ -48,6 +49,18 @@ class EventsController < ApplicationController
 		else
 			@event = Event.find_by(id: params[:id])
 		end
+
+
+		begin
+			@event.num_follower = EventFollower.find_by(event_id: @User.id).size
+		rescue
+			@event.num_follower = 0
+		end
+
+	end
+
+	def json_response_event(object, status = :ok)
+		render json: @event.to_json({:include => :user, :methods => :num_follower}), status: status
 	end
 
 end

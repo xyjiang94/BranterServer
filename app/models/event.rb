@@ -6,6 +6,9 @@ class Event < ApplicationRecord
 	has_many :followers, through: :event_followers, source: :follower
 
 	has_many :posts
-	
+
 	validates_presence_of :title
+
+	attr_accessor :num_follower
+
 end

@@ -13,4 +13,8 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }
 
 	has_secure_password
+
+	attr_accessor :num_events_host, :num_event_joined, :num_post
+
+
 end
