@@ -4,7 +4,7 @@ class EventsController < ApplicationController
 
 	# GET /users/:user_id/events
   def index
-    json_response_event(Event.all)
+    json_response_event_list(Event.all)
   end
 
   # GET /users/:user_id/events/:id
@@ -14,9 +14,9 @@ class EventsController < ApplicationController
 
   # POST /users/:user_id/events
   def create
-    @user.events.create!(event_params)
-		@event.event_followers.create!(follower_id: @user.id)
-    json_response_event(@user, :created)
+    event = @user.events.create!(event_params)
+		event.event_followers.create!(follower_id: @user.id)
+    json_response_event(event, :created)
   end
 
   # PUT /users/:user_id/events/:id
@@ -36,7 +36,7 @@ class EventsController < ApplicationController
 
 	def event_params
     # whitelist params
-    params.permit(:title, :from, :to, :lat, :lng)
+    params.permit(:title, :from, :to, :lat, :lng, :contents)
   end
 
 	def set_user
@@ -61,6 +61,14 @@ class EventsController < ApplicationController
 
 	def json_response_event(object, status = :ok)
 		render json: @event.to_json({:include => :user, :methods => :num_follower}), status: status
+	end
+
+	def json_response_event_list(res)
+		list = []
+		res.each do |x|
+			list << x.to_json({:include => :user, :methods => :num_follower})
+		end
+		json_response(list)
 	end
 
 end
