@@ -7,7 +7,7 @@ class PostsController < ApplicationController
   end
 
 	def create
-		@event.posts.create!(user_id: @user.id, content: params[:content])
+		@event.posts.create!(user_id: @user.id, content: params[:content], image_url: params[:image_url])
 		json_response(@event, :created)
 	end
 

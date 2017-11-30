@@ -36,7 +36,7 @@ class EventsController < ApplicationController
 
 	def event_params
     # whitelist params
-    params.permit(:title, :from, :to, :lat, :lng, :contents)
+    params.permit(:title, :from, :to, :lat, :lng, :contents, :image_url)
   end
 
 	def set_user

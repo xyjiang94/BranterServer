@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20171129223402) do
   create_table "event_followers", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "event_id"
+    t.string "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_event_followers_on_event_id"
@@ -42,6 +43,7 @@ ActiveRecord::Schema.define(version: 20171129223402) do
     t.string "content"
     t.bigint "user_id"
     t.bigint "event_id"
+    t.string "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_posts_on_event_id"
@@ -54,6 +56,7 @@ ActiveRecord::Schema.define(version: 20171129223402) do
     t.string "name"
     t.boolean "gender"
     t.date "birthday"
+    t.string "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"

@@ -8,6 +8,7 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.boolean :gender
       t.date :birthday
 
+      t.string :image_url
 
       t.timestamps
     end
