@@ -17,6 +17,15 @@ class PostsController < ApplicationController
     head :no_content
   end
 
+	def get_all_by_user
+		json_response(@user.posts.all)
+	end
+
+	def get_all_by_event
+		json_response(@event.posts.all)
+	end
+
+
 	private
 
 	def set_user
