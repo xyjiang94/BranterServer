@@ -2,7 +2,7 @@ class CreateEvents < ActiveRecord::Migration[5.1]
   def change
     create_table :events do |t|
       t.string :title, :contents
-      t.datetime :from, :to
+      t.string :from, :to
       t.decimal :lat, :lng
       t.references :user, foreign_key: true
 
