@@ -18,12 +18,12 @@ class PostsController < ApplicationController
   end
 
 	def get_all_by_user
-		res = Post.find_by(user_id: params[:user_id])
+		res = Post.where(user_id: params[:user_id])
 		json_response(res)
 	end
 
 	def get_all_by_event
-		res = Post.find_by(event_id: params[:event_id])
+		res = Post.where4(event_id: params[:event_id])
 		json_response(res)
 	end
 
