@@ -1,9 +1,14 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Available URL
 
-Things you may want to cover:
+URL https://branterapi.herokuapp.com/
+
+[routes](https://docs.google.com/spreadsheets/d/1XSH_9GGJ6HCgh2Hd_L0fRhEYAuCDBWb_Mf7eovsZMsg/edit#gid=0)
+
+
+
+
 
 * Ruby version
 
@@ -20,5 +25,3 @@ Things you may want to cover:
 * Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
-
-* ...
